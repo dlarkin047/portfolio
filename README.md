@@ -20,7 +20,10 @@ Push code to github:
     git push
 
 Switch to master branch
-    git checkout master
+    git checkout main
 
 Merge branch to master
     git merge <branch_name>
+
+push it all to main
+    git push origin main
