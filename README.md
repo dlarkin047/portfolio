@@ -10,9 +10,6 @@ Create a branch:
 	git checkout -b machine_learning_branch
 	git checkout -b qa_testing_branch
 
-Merge branch to main
-	git merge machine_learning_branch
-
 Add to github:
     git add .
 
@@ -21,3 +18,9 @@ Add a comment to your commit:
 
 Push code to github:
     git push
+
+Switch to master branch
+    git checkout master
+
+Merge branch to master
+    git merge <branch_name>
