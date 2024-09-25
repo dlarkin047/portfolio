@@ -67,7 +67,7 @@ ds['diagnosis'].nunique()
 
 # I want to split that data into 2
 ds = pd.get_dummies(data=ds, dtype=int, drop_first=True)
-ds = ds.rename(columns={'diagnosis_M' : 'diagnosis'})
+# ds = ds.rename(columns={'' : 'diagnosis'})
 # Drop first removes the diagnosis column
 
 print(ds.head())
@@ -77,19 +77,34 @@ print(linebreak)
 # --------------------------------------------------------------------------------------------------------------
 # Countplot graphs
 # --------------------------------------------------------------------------------------------------------------
-sns.countplot(ds, x='diagnosis', label='Count')
+sns.countplot(ds, x='diagnosis_M', label='Count')
 plt.show()
 
-print('\nBinine diagnosis count: ' + str((ds.diagnosis == 0).sum()))
-print('Malignant diagnosis count: ' + str((ds.diagnosis == 1).sum()))
+print('\nBinine diagnosis count: ' + str((ds.diagnosis_M == 0).sum()))
+print('Malignant diagnosis count: ' + str((ds.diagnosis_M == 1).sum()))
 
 print(linebreak)
 
 # --------------------------------------------------------------------------------------------------------------
-# Correlation Matrix
+# Correlation Matrix and Heat Map
+# --------------------------------------------------------------------------------------------------------------
+ds_2 = ds.drop(columns='diagnosis_M')
+print(ds_2.head())
+
+ds_2.corrwith(ds['diagnosis_M']).plot.bar(
+    figsize=(20,10), title = 'Correclated with diagnosis', rot=45, grid=True
+)
+plt.show()
+
+corr = ds.corr()
+print(corr)
+
+#HeatMap
+plt.figure(figsize=(20,10))
+sns.heatmap(corr, annot=True)
+plt.show()
+
+# --------------------------------------------------------------------------------------------------------------
+# Splitting the Dataset - train and test set
 # --------------------------------------------------------------------------------------------------------------
 
-
-# --------------------------------------------------------------------------------------------------------------
-# Heat Map
-# --------------------------------------------------------------------------------------------------------------
